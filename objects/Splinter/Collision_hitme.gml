@@ -1,0 +1,1 @@
+scr_projectile_generic_bolt_hit(false)

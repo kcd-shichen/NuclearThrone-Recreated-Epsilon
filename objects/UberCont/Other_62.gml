@@ -1,0 +1,81 @@
+if async_load[? "http_status"] != 200
+or !is_string(async_load[? "result"])
+	exit
+
+if async_load[? "id"] == update_request {
+    if !is_undefined(async_load[? "result"]) && async_load[? "result"] != -1 {
+        var result = json_decode(async_load[? "result"])
+		
+        if (!is_undefined(result)) {
+			var vname = BETA ? "versionBeta": "version"
+			
+            if result[? vname] > GAME_BUILD {
+				var str = loc_fmt("A Build version #% is now available.\nOpen the download page?", string(result[? vname]))
+                update_message = show_question_async(str)
+				
+				if (instance_exists(Player) && !scrGameIsPaused()) {
+					scrGamePause()
+				}
+            }
+            
+			leaderboards_allowed = result[? "leaderboardsAllowed"] ?? false
+			
+            update_info = result
+			
+			daily_request = tb_api("daily")
+			weekly_request = tb_api("weekly")
+			
+			daily_grill = result[? "dailyGriller"] ?? false
+			weekly_grill = result[? "weeklyGriller"] ?? false
+			
+			if is_string(result[? "updateURL"]) {
+				update_url = result[? "updateURL"]
+			}
+			
+			update_notified = true
+        }
+    }
+}
+
+if async_load[? "id"] == daily_request {
+	result = json_decode(async_load[? "result"])
+	
+	if !is_undefined(result) {
+		var _last = daily_seed
+		daily_seed = scrReal(result[? "seed"])
+	    daily_time = scrReal(result[? "time"])
+		
+		with (GameCont) if (_last > 0 && UberCont.daily_seed != _last) {
+			UberCont.daily_run = false
+		}
+		
+	    can_daily = daily_seed > 0 && save_get_value("etc", "seed", "-1") != daily_seed
+	}
+	else {
+		daily_request = -1
+	}
+}
+
+if async_load[? "id"] == weekly_request {
+	result = json_decode(async_load[? "result"])
+	
+	if is_undefined(result) {
+	    weekly_request = tb_api("weekly")
+	    exit
+	}
+	
+	if !is_undefined(result) {
+	    weekly_data = result
+		
+		if weekly_data[? "seed"] != undefined {
+			scrValidateWeeklyLoadout(weekly_data)
+		    can_weekly = 1
+		}
+		else {
+			can_weekly = 0
+			weekly_data = undefined
+			print("Failed to retrieve weeklydata")
+		}
+	}
+	else weekly_request = -1
+}

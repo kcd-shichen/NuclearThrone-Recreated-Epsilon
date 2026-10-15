@@ -1,0 +1,1 @@
+scr_projectile_generic_bullet_hit(2)

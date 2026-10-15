@@ -1,0 +1,1 @@
+scr_projectile_generic_shell_hit(2)

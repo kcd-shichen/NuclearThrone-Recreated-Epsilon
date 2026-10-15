@@ -1,0 +1,1 @@
+if scr_explosion_generic_hit() scr_screenshake(1)

@@ -1,12 +1,3 @@
-<!-- ============================================================
-  README 初稿（新仓库用）· 设计参考：T8RIN/ImageToolbox
-  需要替换的占位（共 4 处，均已用注释标出）：
-   1. OWNER/REPO      → 你的 GitHub 用户名 / 仓库名
-   2. 图标图片路径     → 想换就换（当前引用工程内 options/mac/icon512.png）
-   3. Download 链接    → 你的网盘分享页 / itch 页面
-   4. Screenshots      → 放 2-3 张截图（建议新建 screenshots/ 目录）
-  另外：AI 辅助开发的说明由你自己按需补充（建议放文末小字）。
-============================================================ -->
 
 <div align="center">
 
@@ -15,16 +6,16 @@
 <h1>NuclearThroneMobile:Epsilon</h1>
 
 <p>
-  <b>Open-source rebuild &amp; Android port of Nuclear Throne</b><br/>
+  <b>Open-source rebuild &amp; Android port of Nuclear Throne (unofficial)</b><br/>
   <sub>Font Pipeline redesign · 60 FPS support · Fix &amp; Improve · Resourcepacks fixed</sub>
 </p>
 
-<!-- 徽章：1、2 处为动态徽章，需把 OWNER/REPO 替换为你的仓库全名 -->
+
 [![License](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](./LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20Desktop-3DDC84.svg)](#-building)
 [![Engine](https://img.shields.io/badge/Engine-GameMaker-FF7A00.svg)](https://gamemaker.io/)
-[![Release](https://img.shields.io/badge/release-3.0.0-41AD04.svg)](../../releases)
-[![Forked](https://img.shields.io/badge/Forked%20from-toarch7/nt%20recreated%20public-yellow.svg)](https://github.com/toarch7/nt-recreated-public)
+[![Release](https://img.shields.io/badge/Release-1.0.0-41AD04)](https://drive.google.com/drive/folders/1f09tGm5UQgpeJRdzlvDUwUycaFQKZUEc?usp=drive_link)
+[![Forked](https://img.shields.io/badge/Forked%20From-toarch7/nt%20recreated%20public-yellow.svg)](https://github.com/toarch7/nt-recreated-public)
 [![Official_NTM](https://img.shields.io/badge/Official_NTM-itch.io-FF2D26.svg)](https://toncho.itch.io/nuclear-throne-mobile/)
 
 </div>
@@ -33,13 +24,14 @@
 
 ## 📖 About
 
-A source-available **rebuild and Android port** of *Nuclear Throne*, the game by [Vlambeer](https://vlambeer.com/).
-Forked from 
+A source-available **rebuild and Android port** of *Nuclear Throne*, the game by [Vlambeer](https://vlambeer.com/). Forked from
 
 <div align="center">
+<a href="hhttps://github.com/toarch7/nt-recreated-public">
 
-[$$toarch7/nt-recreated-public$$](https://github.com/toarch7/nt-recreated-public) 
+$$“toarch7/nt-recreated-public"$$
 
+</a>
 </div>
 
 Based on a decompiled source of **Update #19 (u19)** and largely rewritten from scratch to match the contents of the latest version.
@@ -52,7 +44,7 @@ Built with **GameMaker** — so is the original game.
 > See [Building](#-building) below.
 
 > [!NOTE]
-> This is **not an official build** and is **not affiliated with Vlambeer or the NTM authors**.
+> This is **not an official build** and is **not affiliated with Vlambeer or the NTM official authors**.
 > The original *Nuclear Throne Mobile* by **toncho_** lives at [toncho.itch.io/nuclear-throne-mobile](https://toncho.itch.io/nuclear-throne-mobile/).
 
 ---
@@ -61,10 +53,11 @@ Built with **GameMaker** — so is the original game.
 
 - 🎮 **Play on Android & Desktop** — touch controls out of the box, plus gamepad and keyboard+mouse support
 - ⚡ **60 FPS support** — with frame-rate-safe gameplay fixes across weapons, enemies, and effects
-- 💾 **Save & Continue** — resume your runs without losing progress
-- 🏆 **Achievements** — re-implemented Steam achievements system
-- 🌍 **Localization** — community-translated; multiple languages supported
-- 📦 **Resourcepacks** — easy customization with detailed option settings
+- 💾 **Fix & Improve** — built using GM2026.100 or later; making it more stable
+- 🌍 **CJK-fonts optimize** — fix the issues  of incomplete font size and cuts; resolve font loading problems
+- 🩹 **Font-Pipeline redesign** — all fonts are rendered using direct rendering techniques; this represents a significant improvement in the loading of CJK fonts
+- 📦 **Resourcepacks fix** — fix all issues with the original resourcepacks
+- 📠 **Command line improvements** — command-line completion features; retention functions; touch optimization
 - 🕹️ **Quality-of-life options** — extensive video / control / game settings
 - 💰 **Free forever** — no ads, no in-app purchases, no monetization
 
@@ -72,23 +65,20 @@ Built with **GameMaker** — so is the original game.
 
 ## 📥 Download
 
-<!-- 替换为你的分发页（网盘分享页 / itch 页面）。构建产物不放在本仓库。 -->
 
-> [!IMPORTANT]
-> The releases from this repository do not include any physical packages!
+> [!CAUTION]
+> The releases from this repository **DO NOT** include any physical packages.
 
-- Due to the legal issues, if you want to experience this version, you will need to extract all the assets from your own copy of Nuclear Throne and **build it**. If you find it troublesome, you can also download the installation package from **the cloud storage**.
-- The cloud storage is where I store my **personal** files; it has nothing to do with this repository itself. This repo **doesn't** come with any assets from the original game.
+- Due to the legal issues, if you want to experience this game, you will need to extract all the assets from your own copy of Nuclear Throne and **build it**. If you find it troublesome, you can try this CLOUD STORAGE button below.
+- The cloud storage is where I **store my personal files**; it has **NOTHING** to do with this repository itself. This repo **DOESN'T** come with any assets from the original game.
 
 
 <div align="center">
-
 <a href="https://drive.google.com/drive/folders/1f09tGm5UQgpeJRdzlvDUwUycaFQKZUEc?usp=drive_link">
 
 <img src="https://img.shields.io/badge/⬇_cloud storage-black?style=for-the-badge" height="34" alt="Download">
 
 </a>
-
 </div>
 
 
@@ -100,7 +90,7 @@ Built with **GameMaker** — so is the original game.
 
 | Dependency | Notes |
 |---|---|
-| [GameMaker](https://gamemaker.io/) | IDE + runtime (license for Android/Desktop export) |
+| [GameMaker](https://gamemaker.io/) | IDE (v2026.100+) + runtime (license for Android/Desktop export) |
 | [Node.js](https://nodejs.org/) | v20.0+ |
 | Nuclear Throne (update 100+) | **your own copy** — assets are extracted from it |
 
@@ -135,9 +125,9 @@ Then open the project in GameMaker and build for your target platform (Android /
 ## 🖼️ Screenshots
 
 <div align="center">
-  <img src="eg./main-menu.png" width="32%" alt="Main menu — Chinese localization">
-  <img src="eg./video-settings.png" width="32%" alt="Video settings — 60 FPS option">
-  <img src="eg./cheats.png" width="32%" alt="Cheat options — framerate anytime">
+  <img src="eg/main-menu.png" width="32%" alt="Main menu — Chinese localization">
+  <img src="eg/cheats.png" width="32%" alt="Cheat options — framerate anytime">
+  <img src="eg/console.png" width="32%" alt="Video settings — 60 FPS option">
 </div>
 
 ---
@@ -158,6 +148,5 @@ This project's code is licensed under the **[GNU General Public License v3.0](./
 This is a non-commercial fan project and is **not affiliated with or endorsed by Vlambeer**.
 No assets from the original game are included in this repository.
 
-<!-- 完成后可在文末自行补充（小字，例如）：
+
 <p align="center"><sub>Developed with AI-assisted workflows.</sub></p>
--->

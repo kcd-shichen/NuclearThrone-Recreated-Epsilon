@@ -1,0 +1,1 @@
+scr_projectile_generic_plasma_hit()

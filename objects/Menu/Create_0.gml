@@ -1,0 +1,127 @@
+#region make menu
+
+scrLetterbox(false, 0)
+image_speed = 0
+
+crown = crwn_none
+race = Race.Random
+
+char = array_create(Race.NUM_ALL_RACE_TYPES, noone)
+
+scrLoadoutMenuInit()
+
+scrCampfireMenuCreate()
+
+with Campfire {
+	scr_camera_set_position(x, y)
+	break
+}
+
+var _slot_index = 0,
+	_slot_height = sprite_get_height(sprCharSelect),
+	_unlocked_chars = 0,
+	_char_list = [];
+
+for(var _race_id = Race.Random; _race_id < Race.NUM_ALL_RACE_TYPES; ++_race_id) {
+	if (!scrRaceIsHidden(_race_id) || scr_race_is_unlocked(_race_id)) {
+		array_push(_char_list, _race_id)
+	}
+}
+
+var _count = array_length(_char_list),
+	_slot_ystart = view_height - _slot_height - ((LETTERBOX_SIZE - _slot_height) div 2),
+	_slot_step_size = min(20, floor((game_screen_width - 40) / max(1, _count))),
+	_slot_xstart = 8,
+	_slot_x = _slot_xstart
+
+for(var i = 0; i < _count; ++i) {
+	// relative to the camera
+	_slot_x = _slot_xstart + _slot_step_size * _slot_index
+	
+    with instance_create(_slot_x, _slot_ystart, CharSelect) {
+        slot_index = _slot_index
+        race = _char_list[i]
+    }
+	
+	_slot_index ++
+}
+
+if global.is_server && _slot_x < (view_width - 30) {
+	var _sprite = sprGoButtonSymbolic,
+		_offset = sprite_get_bbox_height(_sprite) div 2,
+		_ypos = view_height - LETTERBOX_SIZE + _offset - 2
+    
+	with instance_create(_slot_x + _slot_step_size + 2, _ypos, GoButton) {
+		sprite_index = _sprite
+		visible = false
+	}
+}
+
+
+#endregion
+
+portrait_offsets = array_create(INPUT_MAX_PLAYERS, 0)
+textappear = array_create(INPUT_MAX_PLAYERS, 2)
+splatindex = 0
+
+loadout_open = false
+loadout_crown = crwn_none
+loadout_frame = 0
+loadout_arrow_pointed = false
+loadout_crown_pointed = false
+loadout_skin_pointed = false
+loadout_weapon_pointed = false
+
+weekly = false
+
+if (scrGameIsCustomMode()) {
+	scrMenuPrepareCustomLoadout()
+}
+else if (scrGameIsWeeklyRun()) {
+	scrMenuPrepareWeeklyLoadout()
+}
+
+unlock_hint = ""
+unlock_hint_pop = 0
+tooltip = undefined
+tooltip_pop = 0
+
+if !instance_exists(MusCont) {
+	instance_create(0, 0, MusCont)
+}
+
+with MusCont {
+	audio_stop_sound(amb)
+	amb = custom_sound_check(amb0)
+	snd_play_ambience(amb, true)
+}
+
+event_user(0)
+
+menu_hid_offset = 0
+
+if instance_exists(char[race]) {
+	with char[race] {
+	    view_xview = x - view_width / 2
+	    view_yview = y - view_height / 2
+	}
+	
+	scr_camera_set_position(view_xview, view_yview)
+}
+
+loadout_wep = 0
+loadout_bwep = 0
+
+gpadmode = false
+gpadpointed = 0
+
+mousex = gui_w / 2
+mousey = gui_h / 2
+
+event_perform(ev_step, ev_step_begin)
+
+if global.custom_seed {
+	seed_text = string(global.custom_seed)
+}
+
+alarm[10] = 5

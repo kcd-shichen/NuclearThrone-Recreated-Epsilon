@@ -1,0 +1,10 @@
+image_speed = (0.4) * timescale
+depth = -2
+spr_idle = sprCuzIdle
+spr_to = sprCuzInteractTo
+spr_from = sprCuzInteractFrom
+spr_heya = sprCuzInteract
+wepsound = 0
+chestsound = 0
+lastsnd = -1
+alarm[2] = 90

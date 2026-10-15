@@ -1,0 +1,7 @@
+if lockstep_stop
+	exit
+
+with other {
+    motion_add(point_direction(other.x, other.y, x, y), (8) * timescale)
+    if (speed > maxspeed) speed = maxspeed
+}

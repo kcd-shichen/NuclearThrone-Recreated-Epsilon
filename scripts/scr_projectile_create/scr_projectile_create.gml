@@ -1,0 +1,81 @@
+/// @function scr_projectile_create
+/// @param x
+/// @param y
+/// @param object_index
+/// @param {Undefined|Real|Array} direction=0
+/// @param {Undefined|Real|Array} speed=0
+/// @param default_struct
+function scr_projectile_create(_x, _y, _object_index, _direction = undefined, _speed = undefined, _struct = undefined) {
+	with (scr_damage_create(_x, _y, _object_index, _struct)) {
+		if (is_array(_speed)) {
+			speed = (random_range(_speed[0], _speed[1])) * timescale
+		}
+		else if (is_numeric(_speed)) {
+			// 60帧适配：数值分支同样要缩放。
+			// 原代码这里是 `speed = _speed`，导致所有以「数值」传速度的子弹
+			// （箭矢/普通子弹/霰弹/ScorpionBullet/GuardianBullet/IDPDBullet…）
+			// 在 60fps 下初速度翻倍。数组分支早已乘 timescale，这里补齐。
+			speed = (_speed) * timescale
+		}
+		
+		if (is_array(_direction)) {
+			direction = random_range(_direction[0], _direction[1])
+		}
+		else if (is_numeric(_direction)) {
+			direction = _direction
+		}
+		
+		// BUG: sometimes, somehow, this code proceeds way before the object has ran its create event,
+		// which results in unset variable error. It's not very clear how that happens, so it is what it is
+		if (self[$ "projectile_direction_changes_angle"]) {
+			image_angle = direction
+		}
+		
+		if (team != team_player && scr_skill_get(mut_euphoria)) {
+			with instance_create(x, y, EuphoriaEffectDelay) {
+				target = other.id
+			}
+		}
+		
+		return id
+	}
+	
+	return noone
+}
+
+/// @function scr_projectile_spread
+/// @param spread_angle
+function scr_projectile_spread(_angle) {
+	var _accuracy = instance_is(creator, Player) ? creator.accuracy : 1
+	direction += orandom(_angle/* / 2*/) * _accuracy
+	image_angle = direction
+}
+
+/// @function scr_projectile_shift
+/// @param angle_shift
+/// @param move_distance=0
+function scr_projectile_shift(_angle, _move_amount = 0) {
+	var _accuracy = instance_is(creator, hitme) ? creator.accuracy : 1
+	
+	if _angle != 0 {
+		direction += _angle * _accuracy
+		image_angle = direction
+	}
+	
+	if _move_amount != 0 {
+		x += ldrx(_move_amount, direction)
+		y += ldry(_move_amount, direction)
+	}
+}
+
+function scr_projectile_long_arms(_long_arms) {
+	if (_long_arms != 0) {
+		scr_projectile_shift(0, _long_arms * 20)
+		motion_add(direction, (_long_arms * 3) * timescale)
+		longarms = _long_arms
+		xprevious = x
+		yprevious = y
+		xstart = x
+		ystart = y
+	}
+}
