@@ -16,7 +16,7 @@
 [![Engine](https://img.shields.io/badge/Engine-GameMaker-FF7A00.svg)](https://gamemaker.io/)
 [![Release](https://img.shields.io/badge/Release-1.0.0-41AD04)](https://drive.google.com/drive/folders/1f09tGm5UQgpeJRdzlvDUwUycaFQKZUEc?usp=drive_link)
 [![Forked](https://img.shields.io/badge/Forked%20From-toarch7/nt%20recreated%20public-yellow.svg)](https://github.com/toarch7/nt-recreated-public)
-[![Official_NTM](https://img.shields.io/badge/Official_NTM-itch.io-FF2D26.svg)](https://toncho.itch.io/nuclear-throne-mobile/)
+[![Official_NTM](https://img.shields.io/badge/Original_NTM%20(toarch7)-itch.io-FF2D26.svg)](https://toncho.itch.io/nuclear-throne-mobile/)
 
 </div>
 
