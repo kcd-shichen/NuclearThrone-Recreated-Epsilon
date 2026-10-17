@@ -16,6 +16,6 @@ image_yscale = 0.8
 rot = (1 + random(3)) * choose(1, -1)
 growspeed = random(0.01) / 2
 
-if UberCont.opt_prtcls {
+if !UberCont.opt_prtcls {
     instance_destroy(); exit
 }

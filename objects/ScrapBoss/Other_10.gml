@@ -5,10 +5,10 @@ if speed > (3) * timescale speed = (3) * timescale
 if walk {
     if speed > (2) * timescale speed = (2) * timescale
 
-    walk--motion_add(direction, (0.5) * timescale)
+    walk--motion_add(direction, (0.5) * timescale * timescale)
 
     if target {
-        motion_add(mcr_target_direction, (0.5) * timescale)
+        motion_add(mcr_target_direction, (0.5) * timescale * timescale)
 
         if sprite_index != spr_hurt sprite_index = spr_walk
     }

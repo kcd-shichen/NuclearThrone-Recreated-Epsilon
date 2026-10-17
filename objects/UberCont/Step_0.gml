@@ -125,6 +125,8 @@ camera_set_view_pos(view_camera[0], view_xview, view_yview)
 current_frame += timescale
 
 // debugclear 冷静期倒计时（单位 = 30Hz 逻辑帧；30 帧 = 1 秒）。
+
+// debugclear 冷静期倒计时（单位 = 30Hz 逻辑帧；30 帧 = 1 秒）。
 // 由 `dear`/`debugclear` 置 60；这里每帧递减；归零即「关卡已稳定，可以开始测数据」。
 // 左上角的小字倒计时（`UberCont/Draw_75`）读取这个值。
 if (global.debugclear_cooldown > 0) {

@@ -5,7 +5,7 @@ if hspeed > 0 right = 1
 else if hspeed < 0 right = -1
 
 if walk > 0 {
-    if sprite_index != spr_hurt motion_add(direction, (0.6) * timescale)
+    if sprite_index != spr_hurt motion_add(direction, (0.6) * timescale * timescale)
 }
 
 

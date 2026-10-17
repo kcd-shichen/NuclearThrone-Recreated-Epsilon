@@ -12,7 +12,7 @@ if speed > (1.5 + GameCont.loops / 2) * timescale {
 
 if walk {
     if sprite_index != spr_hurt {
-        motion_add(direction, (0.6) * timescale)
+        motion_add(direction, (0.6) * timescale * timescale)
     }
 
     walk-= timescale

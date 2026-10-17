@@ -8,7 +8,7 @@ if !roll {
     angle = 0
 	
     if walk > 0 {
-		motion_add(direction, (0.8) * timescale)
+		motion_add(direction, (0.8) * timescale * timescale)
         walk-= timescale
     }
 
@@ -35,7 +35,7 @@ if fuel <= 0 {
     //with instance_create(x, y, EliteGruntFlame)
 }
 
-if instance_exists(target) motion_add(mcr_target_direction, (0.4) * timescale)
+if instance_exists(target) motion_add(mcr_target_direction, (0.4) * timescale * timescale)
 
 speed = (7) * timescale
 angle = direction - 90

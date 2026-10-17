@@ -30,7 +30,16 @@ for(var _race_id = Race.Random; _race_id < Race.NUM_ALL_RACE_TYPES; ++_race_id) 
 
 var _count = array_length(_char_list),
 	_slot_ystart = view_height - _slot_height - ((LETTERBOX_SIZE - _slot_height) div 2),
-	_slot_step_size = min(20, floor((game_screen_width - 40) / max(1, _count))),
+	// 选人栏间隙（原版遗留问题 · v2）。原式：min(20, floor((320−40)/角色数)) ——
+	// 两个问题：① 预算被写死 320，而宽屏手机的菜单 view_width 实际 ≈496（240×宽高比）→ 右侧大量空余没用上
+	//（用户截图「底部没有排满」即此）；② 满员 16 角色时步距 17 → 间隙仅 1px（「几乎紧贴」）。
+	// v1 曾试「单机收回 40px 预留」→ 失败：单机按下 Play 后 is_server 也 = true（PlayButton/Other_10），条件永不满足。
+	// v4 修法：**只把预算基准从写死的 game_screen_width 换成真实 view_width**，预留维持开发者原值 40px
+	//（联机 GO 按钮预留 —— 与 toncho 2026-07 Discord 说明一致；v4 起不再引入任何自造数字）：
+	//   步距 = min(20, floor((view_width − 40) / 角色数))
+	//   宽屏（view≥368）：16 角色步距 17→20（间隙 1px→4px）；14 角色维持 20（不变）；
+	//   窄屏（view=320）：floor(280/16)=17 与修前一致（= 原版数值）；GO 定位沿用原版公式（见下方）。
+	_slot_step_size = min(20, floor((view_width - 40) / max(1, _count))),
 	_slot_xstart = 8,
 	_slot_x = _slot_xstart
 
@@ -51,6 +60,10 @@ if global.is_server && _slot_x < (view_width - 30) {
 		_offset = sprite_get_bbox_height(_sprite) div 2,
 		_ypos = view_height - LETTERBOX_SIZE + _offset - 2
     
+	// GO 定位回归**原版公式** `_slot_x + _slot_step_size + 2`
+	//（v2 的 `+6`、v3 的 `+22` 都是自造数值 → v4 起不再引入任何新数字）。
+	// 机理：循环结束时 `_slot_x` = 最后一个槽位自身的 x；原版「空一个步距再 +2」在步距=20 时
+	// 恰好等于「槽位宽 16 + 间隙 6」，GO 完整落在最后槽位右侧（PC-2 被盖是 v2 的 +6 所致）。
 	with instance_create(_slot_x + _slot_step_size + 2, _ypos, GoButton) {
 		sprite_index = _sprite
 		visible = false

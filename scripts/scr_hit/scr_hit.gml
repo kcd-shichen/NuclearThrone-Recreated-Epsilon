@@ -116,6 +116,17 @@ function scr_projectile_generic_shell_hit(_bonus_amount = 1) {
 }
 
 function scr_projectile_generic_plasma_hit() {
+	// 接触类持续伤害按 30Hz 逻辑帧结算（同 laser，详见上）。
+	// plasma 与目标持续重叠期间每物理帧命中一次：60 帧下「伤害 / 屏幕震动 / 收缩 / 反推」
+	// 频率全部翻倍（实测：plasma ball 抖动频率过高、伤害同样过密）。
+	// 门控后 60 帧 = 每 2 物理帧一次 → 与 30 帧真实时间一致；球体收缩步进也随之对齐
+	//（60 帧下每 2 帧缩 0.1 → 存活帧数翻倍但真实时长与 30 帧相同）。
+	// 30 帧 ts=1 → current_frame_active 恒真 → 行为逐帧不变。
+	if (!current_frame_active) return false
+	// 曾经在这里加「每 2 逻辑帧」的隔帧门控——**已撤销**：
+	// 实测（10.17 NEW2b）30 帧的 plasma 对玩家/对道具都是「每 1 帧命中一次」（30/s），
+	// 隔帧会把 60 帧砍成 15/s（半速），且每轮推进 2 逻辑帧只回退 1 物理帧 → 球会**穿过目标**。
+	
 	if scr_can_hit(other.id, false) {
 		var _amount = floor(damage * (image_xscale + image_yscale) * 0.5)
 		
@@ -193,6 +204,13 @@ function scr_explosion_generic_hit() {
 }
 
 function scr_projectile_generic_laser_hit() {
+	// 接触类持续伤害按 30Hz 逻辑帧结算。
+	// laser 光束在存活期间每物理帧都与目标重叠 → Collision_hitme 每帧命中一次；
+	// 60 帧下命中频率翻倍（帧级伤害、非常密集）。门控后 = 每 2 物理帧结算一次，
+	// 与 30 帧的「每逻辑帧一次」在真实时间上完全一致。
+	// 30 帧 ts=1 → current_frame_active 恒真 → 行为逐帧不变（逐字节等价）。
+	if (!current_frame_active) return false
+	
 	if scr_can_hit(other.id, false) && scr_projectile_hit(other.id, damage, knockback_speed) {
 		with other {
 			instance_create(bbox_center_x, bbox_center_y, Smoke)

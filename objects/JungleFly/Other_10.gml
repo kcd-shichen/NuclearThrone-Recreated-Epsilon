@@ -1,7 +1,7 @@
 event_inherited()
 
 if sprite_index != spr_hurt {
-    motion_add(direction, (1) * timescale)
+    motion_add(direction, (1) * timescale * timescale)
 }
 
 if speed > (2 + (rage * 2)) * timescale {

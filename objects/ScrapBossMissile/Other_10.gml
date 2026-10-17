@@ -1,6 +1,6 @@
 event_inherited()
 
-if sprite_index != spr_hurt and instance_exists(target) motion_add(mcr_target_direction, (0.1) * timescale)
+if sprite_index != spr_hurt and instance_exists(target) motion_add(mcr_target_direction, (0.1) * timescale * timescale)
 
 if sprite_index = spr_hurt alarm[1] = 50
 

@@ -232,7 +232,9 @@ if hp <= 0 {
 		}
 	}
 	else if race == Race.Chicken && bleed < 150 && visible {
-		if !bleed {
+		// 显式比较：原 `if !bleed` 会被「0.5 判为假」的真值转换规则
+		// 在 60 帧下二次命中（bleed 以 0.5 步进）→ 一次死亡连续两帧各掉一次头（8→4）；30 帧整数步进不受影响。
+		if (bleed <= 0) {
 			snd_play(sndChickenLoseHead)
 			snd_play_loop(sndChickenHeadlessLoop)
 

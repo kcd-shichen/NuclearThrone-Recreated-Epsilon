@@ -1,7 +1,7 @@
 event_inherited()
 
 
-if sprite_index != spr_fire motion_add(direction, (0.5) * timescale)
+if sprite_index != spr_fire motion_add(direction, (0.5) * timescale * timescale)
 
 if speed > (1.5) * timescale speed = (1.5) * timescale
 

@@ -31,7 +31,7 @@ if walk && instance_exists(Player) {
         y += (1) * timescale
     }
 
-    motion_add(walkdir, (2) * timescale)
+    motion_add(walkdir, (2) * timescale * timescale)
 
     if speed > (4) * timescale {
         speed = (4) * timescale

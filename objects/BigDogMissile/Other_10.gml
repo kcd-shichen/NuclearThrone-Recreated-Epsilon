@@ -1,8 +1,8 @@
 event_inherited()
 
 if instance_exists(creator) {
-    motion_add(creator.gunangle, (0.1) * timescale)
-} else motion_add(direction, (0.1) * timescale)
+    motion_add(creator.gunangle, (0.1) * timescale * timescale)
+} else motion_add(direction, (0.1) * timescale * timescale)
 
 if sprite_index == spr_hurt {
     alarm[1] = 50

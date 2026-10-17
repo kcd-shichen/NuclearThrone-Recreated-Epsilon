@@ -1,6 +1,8 @@
-#macro GAME_VERSION "beta-3.0.0"
+// 对外显示的完整版本号（可含 "-" 等非数字字符）
+#macro GAME_VERSION "3-110E"
+// 内部构建号：必须是纯数字 —— 参与存档版本校验 / 联机握手 / 每日数据上报
 #macro GAME_BUILD 3004
-// 版本显示后缀（仅用于显示，不参与数字逻辑；想换后缀只改这一行）
+// 旧显示后缀（保留兼容，不再参与角落版本号拼接）
 #macro GAME_TAG "E"
 #macro BETA true
 

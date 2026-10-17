@@ -38,7 +38,7 @@ else if (animation_end) {
 }
 
 if (walk > 0) {
-    motion_add(direction, (0.8) * timescale)
+    motion_add(direction, (0.8) * timescale * timescale)
     walk -= timescale
 }
 

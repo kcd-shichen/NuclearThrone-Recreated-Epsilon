@@ -3,7 +3,7 @@ if walk > 0 {
     walk -= (1) * timescale
 
     if !alarm[2] {
-        motion_add(direction, (2) * timescale)
+        motion_add(direction, (2) * timescale * timescale)
         if instance_exists(target) {
             mp_potential_step(target.x, target.y, (2) * timescale, 0)
         }

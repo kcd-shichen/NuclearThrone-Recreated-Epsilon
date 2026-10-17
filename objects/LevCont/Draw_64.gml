@@ -9,7 +9,14 @@ draw_set_halign(fa_center)
 draw_set_valign(fa_middle)
 
 with SkillText {
-    if !disappear or disappear % 2 == 0 {
+    // 闪烁占空比帧率化。
+    // 60 帧下 disappear 以 0.5 步进，`disappear % 2 == 0` 只在「恰好为偶数」的物理帧成立
+    // → 亮 1 帧 / 灭 3 帧（25% 占空）——视觉上「变淡、持续闪烁」。
+    // floor() 后 60 帧 = 亮 2 / 灭 2（50% 占空、15Hz），与 30 帧观感一致；
+    // 30 帧 ts=1 → disappear 恒为整数 → floor 恒等 → 逐帧不变。
+    // 显式比较（与 SkillText/Step 同源；原 `if !disappear` 的 0.5 真值窗口；
+    // 30 帧离散点不变，60 帧消除误判）。
+    if (disappear <= 0) or floor(disappear) % 2 == 0 {
 		draw_text_nt(x, y, "@d" + loc(txt))
 	}
 }

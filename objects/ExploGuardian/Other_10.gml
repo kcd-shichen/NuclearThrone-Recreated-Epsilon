@@ -17,7 +17,7 @@ if sprite_index == spr_hurt || sprite_index == spr_chrg || sprite_index == spr_f
 if (hspeed != 0) right = sign(hspeed)
 
 if walk && !charge && sprite_index != spr_hurt {
-    motion_add(direction, (0.5) * timescale)
+    motion_add(direction, (0.5) * timescale * timescale)
 }
 
 if (charge) {

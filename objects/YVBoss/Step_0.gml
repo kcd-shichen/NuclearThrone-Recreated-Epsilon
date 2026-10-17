@@ -4,7 +4,7 @@ if (ammo) {
 	walk = 0
 }
 else if (walk > 0) {
-	motion_add(direction, (0.5) * timescale)
+	motion_add(direction, (0.5) * timescale * timescale)
 	walk -= timescale
 }
 

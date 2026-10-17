@@ -1,7 +1,7 @@
 event_inherited()
 
 if sprite_index != spr_hurt and walk > 0 {
-    motion_add(direction, (1) * timescale)
+    motion_add(direction, (1) * timescale * timescale)
     walk -= (1) * timescale
 }
 

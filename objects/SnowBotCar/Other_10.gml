@@ -2,7 +2,7 @@ event_inherited()
 
 if walk > 0 {
     walk -= (1) * timescale
-    motion_add(gunangle, (1) * timescale)
+    motion_add(gunangle, (1) * timescale * timescale)
 }
 
 if sprite_index = spr_fire {

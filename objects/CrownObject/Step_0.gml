@@ -21,7 +21,7 @@ else if speed > (2) * timescale {
 friction = (0.2) * timescale * timescale
 
 if walk > 0 {
-    motion_add(direction, (1) * timescale)
+    motion_add(direction, (1) * timescale * timescale)
     walk -= timescale
 }
 

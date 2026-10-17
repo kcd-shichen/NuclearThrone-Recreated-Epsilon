@@ -2,15 +2,15 @@ event_inherited()
 
 if charge {
     instance_create(x + random(8) - 4, y + 4 + random(4), Dust)
-    motion_add(direction, (2) * timescale)
-    motion_add(gunangle, (2) * timescale)
+    motion_add(direction, (2) * timescale * timescale)
+    motion_add(gunangle, (2) * timescale * timescale)
     if (speed > (5) * timescale) speed = (5) * timescale
 	nexthurt = 0
 }
 else {
     if walk > 0 {
-        motion_add(direction, (2) * timescale)
-        motion_add(gunangle, (1) * timescale)
+        motion_add(direction, (2) * timescale * timescale)
+        motion_add(gunangle, (1) * timescale * timescale)
         walk -= timescale
     }
 

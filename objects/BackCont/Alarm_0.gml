@@ -1,4 +1,4 @@
-if UberCont.opt_prtcls {
+if !UberCont.opt_prtcls {
     alarm[0] = 30
     exit
 }

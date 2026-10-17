@@ -1,7 +1,7 @@
 event_inherited()
 
 if walk > 0 {
-    motion_add(direction, (1.5) * timescale)
+    motion_add(direction, (1.5) * timescale * timescale)
     walk-= timescale
 }
 

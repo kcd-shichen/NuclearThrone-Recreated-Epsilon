@@ -4,7 +4,7 @@ if !leap {
     z = 0
     zspeed = 0
 
-    if sprite_index != spr_hurt && spr_idle == sprDogGuardianWalk motion_add(direction, (0.4) * timescale)
+    if sprite_index != spr_hurt && spr_idle == sprDogGuardianWalk motion_add(direction, (0.4) * timescale * timescale)
 
     if hspeed > 0 {
         right = 1
