@@ -252,7 +252,9 @@ function scrSendDailyData() {
 			
 			#endregion
 
-            scrHttpRequest(hook, "POST", map, json_stringify(result))
+            // 仅在有 Webhook 配置时上报（SECRETS.gml 被 .gitignore 排除，公开构建里为空/未定义）
+            if (is_string(hook) && hook != "")
+                scrHttpRequest(hook, "POST", map, json_stringify(result))
         }
 
         ds_map_destroy(map)
